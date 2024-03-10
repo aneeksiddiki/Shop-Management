@@ -1,0 +1,40 @@
+﻿@using Shop_Management.Models
+@model List<Catagory>
+
+@section title {
+    <h3>Catagories</h3>
+}
+
+@if(Model != null && Model.Count() > 0)
+{
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Catagory ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.CatagoryId</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>
+                            <a asp-controller="catagories" asp-action="edit" asp-route-id="@item.CatagoryId" class="btn btn-warning">Edit</a>
+                            <a asp-controller="catagories" asp-action="edit" asp-route-id="@item.CatagoryId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                }
+             </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h3>No Data Available</h3>
+}
