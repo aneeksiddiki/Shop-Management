@@ -12,7 +12,7 @@
         public static void AddCatagory(Catagory catagory)
         {
             var maxId = _catagories.Count;
-            catagory.CatagoryId += maxId;
+            catagory.CatagoryId = maxId + 1;
             _catagories.Add(catagory);
         }
 

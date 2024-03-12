@@ -1,0 +1,21 @@
+﻿@using Shop_Management.Models
+@model Catagory
+
+@section title {
+    <h3>Delete Catagory</h3>
+}
+
+@if (Model != null)
+{
+    <div class="container">
+        <div class="card p-3 shadow-lg">
+            <form method="post">
+                <input type="hidden" asp-for="CatagoryId" />
+                <p><span class="fw-bold">Catagory Name: </span>@Model.Name</p>
+                <p><span class="fw-bold">Description: </span>@Model.Description</p>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <button class="btn btn-secondary" onclick="history.go(-1);return false;">Cancel</button>
+            </form>
+        </div>
+    </div>
+}
