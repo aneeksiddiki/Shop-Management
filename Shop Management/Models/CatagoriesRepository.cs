@@ -37,9 +37,13 @@
 
         public static void UpdateCatagory(int catagoryId, Catagory catagory)
         {
-            if (catagoryId != catagory.CatagoryId) return;
+            if (catagoryId != catagory.CatagoryId)
+            { 
+                return; 
+            }
 
-            var catagoryToUpdate = GetCatagoryById(catagoryId);
+            var catagoryToUpdate = _catagories.FirstOrDefault(x => x.CatagoryId == catagoryId);
+
             if (catagoryToUpdate != null)
             {
                 catagoryToUpdate.Name = catagory.Name;

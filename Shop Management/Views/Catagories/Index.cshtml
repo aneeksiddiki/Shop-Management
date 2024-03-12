@@ -1,40 +1,78 @@
-﻿@using Shop_Management.Models
-@model List<Catagory>
+﻿@model List<Catagory>
 
 @section title {
     <h3>Catagories</h3>
 }
-
-@if(Model != null && Model.Count() > 0)
-{
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Catagory ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>@item.CatagoryId</td>
-                    <td>@item.Name</td>
-                    <td>@item.Description</td>
-                    <td>
-                            <a asp-controller="catagories" asp-action="edit" asp-route-id="@item.CatagoryId" class="btn btn-warning">Edit</a>
-                            <a asp-controller="catagories" asp-action="edit" asp-route-id="@item.CatagoryId" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-                }
-             </tbody>
-        </table>
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header text-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add New Catagory
+            </button>
+        </div>
+        <div class="card-body">
+            @if (Model != null && Model.Count() > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Catagory ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.CatagoryId</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Description</td>
+                                    <td>
+                                        <a class="btn btn-warning" asp-controller="Catagories" asp-action="Edit" asp-route-id="@item.CatagoryId">Edit</a>
+                                        <a asp-controller="catagories" asp-action="edit" asp-route-id="@item.CatagoryId" class="btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <h3>No Data Available</h3>
+            }
+        </div>
     </div>
-}
-else
-{
-    <h3>No Data Available</h3>
-}
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Catagory</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="addcatagory">
+                    <div class="form-group">
+                        <label class="col-form-label">Catagory name</label>
+                        <input type="text" class="form-control" name="catname" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Description</label>
+                        <input type="text" class="form-control" name="catdescription" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="addcatagory" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
